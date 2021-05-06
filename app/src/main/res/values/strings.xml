@@ -3,4 +3,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="noTaskText">Añade tu primera nota</string>
+    <string name="fragmentAdd">Añadir Nota</string>
+    <string name="fragmentUpdate">Editar Nota</string>
+    <string name="titulo">Título</string>
+    <string name="descripcion">Descripción</string>
+    <string name="prioridad">Prioridad</string>
+    <string-array name="prioridades">
+        <item>Muy Urgente</item>
+        <item>Urgente</item>
+        <item>Poco Urgente</item>
+    </string-array>
 </resources>
