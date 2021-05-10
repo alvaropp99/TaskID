@@ -10,5 +10,6 @@
     <color name="principalTheme">#212121</color>
     <color name="secondaryTask">#60646C</color>
     <color name="principalTask">#74ACB4</color>
+    <color name="gray">#D3D3D3</color>
 
 </resources>
