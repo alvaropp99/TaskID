@@ -8,6 +8,8 @@
     <string name="titulo">Título</string>
     <string name="descripcion">Descripción</string>
     <string name="prioridad">Prioridad</string>
+    <string name="sortBy">Ordenar por</string>
+    <string name="deleteAll">Borrar todas las notas</string>
     <string-array name="prioridades">
         <item>Muy Urgente</item>
         <item>Urgente</item>
