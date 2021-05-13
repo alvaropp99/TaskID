@@ -15,4 +15,6 @@
         <item>Urgente</item>
         <item>Poco Urgente</item>
     </string-array>
+    <string name="confirm">Confirmar</string>
+    <string name="delete">Eliminar</string>
 </resources>
