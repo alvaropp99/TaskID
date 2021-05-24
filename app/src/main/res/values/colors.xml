@@ -11,5 +11,8 @@
     <color name="secondaryTask">#60646C</color>
     <color name="principalTask">#74ACB4</color>
     <color name="gray">#D3D3D3</color>
+    <color name="red">#FF3333</color>
+    <color name="yellow">#FAC926</color>
+    <color name="green">#38EA6A</color>
 
 </resources>

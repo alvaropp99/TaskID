@@ -10,12 +10,15 @@ import androidx.navigation.fragment.findNavController
 import com.example.taskid.R
 import com.example.taskid.data.models.Priority
 import com.example.taskid.data.models.TaskData
+import com.example.taskid.data.viewmodel.SharedViewModel
 import com.example.taskid.data.viewmodel.TaskViewModel
 import com.example.taskid.databinding.FragmentAddBinding
+import com.google.android.material.snackbar.Snackbar
 
 class AddFragment : Fragment() {
 
     private val addTaskViewModel : TaskViewModel by viewModels()
+    private val mSharedViewModel : SharedViewModel by viewModels()
     private var _binding: FragmentAddBinding?=null
     private val binding get() = _binding!!
 
@@ -29,6 +32,11 @@ class AddFragment : Fragment() {
 
         //fijamos el menú list_fragment_menu
         setHasOptionsMenu(true)
+
+        // Llamamos al método que se encarga que las prioridades
+        // tengan su color en función de la urgencia
+        binding.spinnerPriority.onItemSelectedListener=mSharedViewModel.listener
+
 
         return binding.root
     }
@@ -59,10 +67,11 @@ class AddFragment : Fragment() {
                 addDescription
             )
             addTaskViewModel.insertData(newData)
-            Toast.makeText(requireContext(),"Nota añadida correctamente",Toast.LENGTH_SHORT).show()
+            var snackbar= activity?.let { Snackbar.make(it.findViewById(R.id.addFragment),"Nota añadida correctamente", Snackbar.LENGTH_SHORT).show()}
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
         }else{
-            Toast.makeText(requireContext(),"Rellena todos los campos",Toast.LENGTH_SHORT).show()
+            var snackbar= activity?.let { Snackbar.make(it.findViewById(R.id.addFragment),"Rellene todos los campos", Snackbar.LENGTH_SHORT).show()}
+
         }
     }
 
