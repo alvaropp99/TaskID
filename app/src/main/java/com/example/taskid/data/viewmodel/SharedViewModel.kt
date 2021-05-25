@@ -6,7 +6,9 @@ import android.widget.AdapterView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.example.taskid.R
+import com.example.taskid.data.models.TaskData
 
 
 // Se crea la clase SharedViewModel para reutilizar aquellos métodos
@@ -34,5 +36,9 @@ class SharedViewModel (application: Application):AndroidViewModel(application) {
         }
     }
 
+    val emptyDatabase : MutableLiveData<Boolean> = MutableLiveData(false)
 
+    fun checkIfDatabaseEmpty(taskData: List<TaskData>){
+        emptyDatabase.value = taskData.isEmpty()
+    }
 }

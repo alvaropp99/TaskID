@@ -9,14 +9,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaNotas"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="8dp"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/noTaskImage"
@@ -29,7 +30,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.25"
+        android:visibility="invisible"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addTaskButton"
@@ -55,5 +57,6 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noTaskImage" />
+        app:layout_constraintTop_toBottomOf="@+id/noTaskImage"
+        android:visibility="invisible"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
