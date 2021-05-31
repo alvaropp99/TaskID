@@ -20,10 +20,12 @@ class UpdateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // se realiza el inflate para este fragment
-        return inflater.inflate(R.layout.fragment_update, container, false)
         //fijamos el menú list_fragment_menu
         setHasOptionsMenu(true)
+        // se realiza el inflate para este fragment
+        return inflater.inflate(R.layout.fragment_update, container, false)
+
+
 
         // MIRAR MAÑANA COMO HACER QUE EL UPDATE FRAGMENT RECIBA LOS DATOS DE LAS NOTAS CREADAS
 
