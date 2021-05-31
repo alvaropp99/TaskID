@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.menu.ActionMenuItemView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskid.R
 import com.example.taskid.data.models.TaskData
@@ -15,9 +16,16 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder> (){
     var dataList = emptyList<TaskData>()
     class MyViewHolder(private val binding: TaskLayoutBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(taskData: TaskData){
+        fun bind(taskData: TaskData, position: Int){
             binding.taskData = taskData
             binding.executePendingBindings()
+
+            binding.taskBackground.setOnClickListener{
+                // MIRAR MAÑANA EN PROFUNDIDAD
+
+                // var dataList = emptyList<TaskData>()
+                itemView.findNavController().navigate(R.id.action_listFragment_to_updateFragment)
+            }
         }
         companion object{
             fun from(parent: ViewGroup) : MyViewHolder{
@@ -37,7 +45,8 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder> (){
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         // La llamada a los campos del layout se haría mediante un binding dentro del propio layout
         val currentItem = dataList[position]
-        holder.bind(currentItem)
+        holder.bind(currentItem,position)
+
     }
 
     // Devuelve el número total de datos que hay dentro del ListAdapter
