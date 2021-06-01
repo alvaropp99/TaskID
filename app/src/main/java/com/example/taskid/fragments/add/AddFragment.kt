@@ -67,10 +67,10 @@ class AddFragment : Fragment() {
                 addDescription
             )
             addTaskViewModel.insertData(newData)
-            var snackbar= activity?.let { Snackbar.make(it.findViewById(R.id.addFragment),"Nota añadida correctamente", Snackbar.LENGTH_SHORT).show()}
+            var snackbar= activity?.let { Snackbar.make(it.findViewById(R.id.addFragmentFrag),"Nota añadida correctamente", Snackbar.LENGTH_SHORT).show()}
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
         }else{
-            var snackbar= activity?.let { Snackbar.make(it.findViewById(R.id.addFragment),"Rellene todos los campos", Snackbar.LENGTH_SHORT).show()}
+            var snackbar= activity?.let { Snackbar.make(it.findViewById(R.id.addFragmentFrag),"Rellene todos los campos", Snackbar.LENGTH_SHORT).show()}
 
         }
     }

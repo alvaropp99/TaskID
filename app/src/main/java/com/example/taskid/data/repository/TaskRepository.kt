@@ -10,4 +10,8 @@ class TaskRepository (private val taskDAO: TaskDAO) {
     suspend fun insertData(taskData: TaskData){
         taskDAO.insertData(taskData)
     }
+
+    suspend fun updateData(taskData: TaskData){
+        taskDAO.updateData(taskData)
+    }
 }
