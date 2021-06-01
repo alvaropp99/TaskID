@@ -4,15 +4,22 @@ import android.os.Bundle
 import android.renderscript.RenderScript
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.taskid.R
 import com.example.taskid.data.models.Priority
+import com.example.taskid.data.viewmodel.SharedViewModel
+import com.example.taskid.data.viewmodel.TaskViewModel
 import com.example.taskid.databinding.FragmentAddBinding
 import com.example.taskid.databinding.FragmentUpdateBinding
 
 class UpdateFragment : Fragment() {
 
     private val args by navArgs<UpdateFragmentArgs>()
+
+    private val mSharedViewModel: SharedViewModel by viewModels()
+    private val mTaskViewModel: TaskViewModel by viewModels()
+
     private var _binding: FragmentUpdateBinding?=null
     private val binding get() = _binding!!
 
@@ -20,18 +27,18 @@ class UpdateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Realizamos el binding para el updateFragment con su respectivo layout
+        _binding = FragmentUpdateBinding.inflate(inflater, container, false)
+        binding.args = args
+
         //fijamos el menú list_fragment_menu
         setHasOptionsMenu(true)
-        // se realiza el inflate para este fragment
-        return inflater.inflate(R.layout.fragment_update, container, false)
+
+        binding.spinnerPriorityUpdate.onItemSelectedListener = mSharedViewModel.listener
+
+        return binding.root
 
 
-
-        // MIRAR MAÑANA COMO HACER QUE EL UPDATE FRAGMENT RECIBA LOS DATOS DE LAS NOTAS CREADAS
-
-        /*binding.etTitleUpdate.setText(args.currentItem.title)
-        binding.etDescripcionUpdate.setText(args.currentItem.description)
-        binding.spinnerPriorityUpdate.setIte*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

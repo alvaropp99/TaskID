@@ -16,17 +16,11 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder> (){
     var dataList = emptyList<TaskData>()
     class MyViewHolder(private val binding: TaskLayoutBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(taskData: TaskData, position: Int){
+        fun bind(taskData: TaskData){
             binding.taskData = taskData
             binding.executePendingBindings()
-
-            binding.taskBackground.setOnClickListener{
-                // MIRAR MAÑANA EN PROFUNDIDAD
-
-                // var dataList = emptyList<TaskData>()
-                itemView.findNavController().navigate(R.id.action_listFragment_to_updateFragment)
-            }
         }
+
         companion object{
             fun from(parent: ViewGroup) : MyViewHolder{
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -45,7 +39,7 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder> (){
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         // La llamada a los campos del layout se haría mediante un binding dentro del propio layout
         val currentItem = dataList[position]
-        holder.bind(currentItem,position)
+        holder.bind(currentItem)
 
     }
 

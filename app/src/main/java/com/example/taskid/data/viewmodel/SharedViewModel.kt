@@ -35,10 +35,12 @@ class SharedViewModel (application: Application):AndroidViewModel(application) {
             }
         }
     }
+/*
 
     val emptyDatabase : MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun checkIfDatabaseEmpty(taskData: List<TaskData>){
         emptyDatabase.value = taskData.isEmpty()
     }
+*/
 }
