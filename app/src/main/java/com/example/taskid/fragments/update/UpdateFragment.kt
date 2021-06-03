@@ -1,10 +1,13 @@
 package com.example.taskid.fragments.update
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.renderscript.RenderScript
 import android.text.TextUtils
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -58,8 +61,10 @@ class UpdateFragment : Fragment() {
 
         if(item.itemId == R.id.update_task){
             updateData()
+            hideKeyboard()
         }else if(item.itemId == R.id.delete_task){
             deleteTask()
+            hideKeyboard()
         }
 
         return super.onOptionsItemSelected(item)
@@ -116,5 +121,14 @@ class UpdateFragment : Fragment() {
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
         builder.create().show()
+    }
+
+    private fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    private fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
