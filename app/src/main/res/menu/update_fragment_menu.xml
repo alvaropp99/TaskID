@@ -9,7 +9,7 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/delte_task"
+        android:id="@+id/delete_task"
         android:title="@string/delete"
         app:showAsAction="never"/>
 </menu>

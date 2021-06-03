@@ -7,6 +7,8 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.taskid.data.models.TaskData
 
+// Instancia de la base de datos y su creación
+
 @Database(entities = [TaskData::class], version = 1, exportSchema = false)
 @TypeConverters (Converter::class)
 abstract class TaskIDDatabase : RoomDatabase(){

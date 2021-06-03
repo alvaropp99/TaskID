@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.taskid.data.models.TaskData
 
+// DAO que relaciona la DB de room con la aplicación
+
 @Dao
 interface TaskDAO {
 
@@ -15,4 +17,10 @@ interface TaskDAO {
 
     @Update
     suspend fun updateData(taskData: TaskData)
+
+    @Delete
+    suspend fun deleteData(taskData: TaskData)
+
+    @Query("DELETE FROM task_table")
+    suspend fun deleteAllTasks()
 }

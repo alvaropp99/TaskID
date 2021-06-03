@@ -3,6 +3,7 @@ package com.example.taskid.data.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.taskid.data.TaskIDDatabase
 import com.example.taskid.data.models.TaskData
@@ -16,6 +17,12 @@ class TaskViewModel (application: Application):AndroidViewModel(application) {
 
     val getData:LiveData<List<TaskData>> = repository.getData
 
+    val emptyDb: MutableLiveData<Boolean> = MutableLiveData(true)
+
+    fun checkIfDbEmpty(taskData: List <TaskData>){
+        emptyDb.value = taskData.isEmpty()
+    }
+
     fun insertData(taskData: TaskData){
         viewModelScope.launch (Dispatchers.IO){
             repository.insertData(taskData)
@@ -25,6 +32,18 @@ class TaskViewModel (application: Application):AndroidViewModel(application) {
     fun updateData(taskData: TaskData){
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateData(taskData)
+        }
+    }
+
+    fun deleteData(taskData: TaskData){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteData(taskData)
+        }
+    }
+
+    fun deleteAllTasks(){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteAllTasks()
         }
     }
 }
