@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.room.Query
 import com.example.taskid.data.TaskIDDatabase
 import com.example.taskid.data.models.TaskData
 import com.example.taskid.data.repository.TaskRepository
@@ -47,5 +48,9 @@ class TaskViewModel (application: Application):AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO){
             repository.deleteAllTasks()
         }
+    }
+
+    fun searchDb(searchQuery: String):LiveData<List<TaskData>>{
+        return repository.searchDb(searchQuery)
     }
 }

@@ -2,9 +2,13 @@ package com.example.taskid.fragments.list
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -12,9 +16,8 @@ import com.example.taskid.R
 import com.example.taskid.data.viewmodel.TaskViewModel
 import com.example.taskid.databinding.FragmentListBinding
 import com.google.android.material.snackbar.Snackbar
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private val addTaskViewModel: TaskViewModel by viewModels()
     private var _binding:  FragmentListBinding?=null
@@ -25,8 +28,12 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         // mediante el binding se enlaza la clase de kotlin con su respectivo layout y atributos
         _binding= FragmentListBinding.inflate(inflater, container, false)
+
+        setRecyclerView()
 
         //cuando se pulsa el floating button que abra el fragment que añade una nota
         binding.addTaskButton.setOnClickListener{
@@ -37,8 +44,6 @@ class ListFragment : Fragment() {
         binding.listLayout.setOnClickListener{
             findNavController().navigate(R.id.action_listFragment_to_updateFragment)
         }
-
-        setRecyclerView()
 
 
         //fijamos el menú list_fragment_menu
@@ -58,6 +63,12 @@ class ListFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.list_fragment_menu, menu)
+
+        val search = menu.findItem(R.id.search_button)
+        val searchView = search.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled = true
+        searchView?.setOnQueryTextListener(this)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -73,13 +84,38 @@ class ListFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if(query!=null){
+            searchInDb(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if(query!=null){
+            searchInDb(query)
+        }
+        return true
+    }
+
+    private fun searchInDb(query: String){
+        val searchQuery = "%$query%"
+
+        addTaskViewModel.searchDb(searchQuery).observeOnce(viewLifecycleOwner, Observer { list ->
+            list?.let {
+                Log.d("ListFragment","searchInDb")
+                adapter.setData(it)
+            }
+        })
+    }
+
     private fun setRecyclerView(){
         val recyclerView = binding.listaNotas
         recyclerView.adapter = adapter
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        recyclerView.itemAnimator = SlideInUpAnimator().apply {
-            addDuration = 300
-        }
+        // Estudiar funcionamiento de las animaciones
+        /*recyclerView.itemAnimator = LandingAnimator().apply { moveDuration=300 }*/
+
     }
 
     private fun confirmFullDelete(){
@@ -102,5 +138,15 @@ class ListFragment : Fragment() {
             binding.noTaskImage.visibility = View.INVISIBLE
             binding.noTaskText.visibility = View.INVISIBLE
         }
+    }
+
+
+    fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>){
+        observe(lifecycleOwner, object : Observer<T>{
+            override fun onChanged(t: T) {
+                observer.onChanged(t)
+                removeObserver(this)
+            }
+        })
     }
 }
