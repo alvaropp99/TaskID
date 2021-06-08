@@ -6,6 +6,8 @@ import com.example.taskid.data.models.TaskData
 
 class TaskRepository (private val taskDAO: TaskDAO) {
     val getData: LiveData<List<TaskData>> = taskDAO.getData()
+    val sortByHigh: LiveData<List<TaskData>> = taskDAO.sortByHigh()
+    val sortByLow: LiveData<List<TaskData>> = taskDAO.sortByLow()
 
     suspend fun insertData(taskData: TaskData){
         taskDAO.insertData(taskData)

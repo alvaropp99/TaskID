@@ -65,6 +65,11 @@ class ListFragment : Fragment() {
             confirmFullDelete()
         }
 
+        when (item.itemId){
+            R.id.priority_high -> addTaskViewModel.sortByHigh.observe(viewLifecycleOwner,{adapter.setData(it)})
+            R.id.priority_low -> addTaskViewModel.sortByLow.observe(viewLifecycleOwner,{adapter.setData(it)})
+        }
+
         return super.onOptionsItemSelected(item)
     }
 
