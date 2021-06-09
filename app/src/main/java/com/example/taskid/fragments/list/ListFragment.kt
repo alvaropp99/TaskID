@@ -34,7 +34,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         _binding= FragmentListBinding.inflate(inflater, container, false)
 
         setRecyclerView()
-
+        //fijamos el menú list_fragment_menu
+        setHasOptionsMenu(true)
         //cuando se pulsa el floating button que abra el fragment que añade una nota
         binding.addTaskButton.setOnClickListener{
             findNavController().navigate(R.id.action_listFragment_to_addFragment)
@@ -46,8 +47,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         }
 
 
-        //fijamos el menú list_fragment_menu
-        setHasOptionsMenu(true)
+
 
         addTaskViewModel.getData.observe(viewLifecycleOwner,{data ->
             addTaskViewModel.checkIfDbEmpty(data)
@@ -68,6 +68,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         val searchView = search.actionView as? SearchView
         searchView?.isSubmitButtonEnabled = true
         searchView?.setOnQueryTextListener(this)
+
 
     }
 
@@ -97,11 +98,10 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         }
         return true
     }
-
     private fun searchInDb(query: String){
         val searchQuery = "%$query%"
 
-        addTaskViewModel.searchDb(searchQuery).observeOnce(viewLifecycleOwner, Observer { list ->
+        addTaskViewModel.searchDb(searchQuery).observe(this, Observer { list ->
             list?.let {
                 Log.d("ListFragment","searchInDb")
                 adapter.setData(it)
@@ -138,15 +138,5 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             binding.noTaskImage.visibility = View.INVISIBLE
             binding.noTaskText.visibility = View.INVISIBLE
         }
-    }
-
-
-    fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>){
-        observe(lifecycleOwner, object : Observer<T>{
-            override fun onChanged(t: T) {
-                observer.onChanged(t)
-                removeObserver(this)
-            }
-        })
     }
 }

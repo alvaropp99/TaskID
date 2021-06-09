@@ -1,11 +1,8 @@
 package com.example.taskid.data.repository
 
-import android.app.DownloadManager
 import androidx.lifecycle.LiveData
-import androidx.room.Query
 import com.example.taskid.data.TaskDAO
 import com.example.taskid.data.models.TaskData
-import java.lang.StringBuilder
 
 class TaskRepository (private val taskDAO: TaskDAO) {
     val getData: LiveData<List<TaskData>> = taskDAO.getData()

@@ -3,7 +3,6 @@ package com.example.taskid.data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.taskid.data.models.TaskData
-import java.lang.StringBuilder
 
 // DAO que relaciona la DB de room con la aplicación
 
@@ -31,6 +30,6 @@ interface TaskDAO {
     @Query("SELECT * FROM task_table ORDER BY CASE WHEN priority LIKE 'L%' THEN 1 WHEN priority LIKE 'M%' THEN 2 WHEN priority LIKE 'H%' THEN 3 END")
     fun sortByLow(): LiveData<List<TaskData>>
 
-    @Query("SELECT * FROM task_table WHERE title LIKE :searchQuery")
+    @Query("SELECT * FROM task_table WHERE title LIKE :searchQuery OR description LIKE :searchQuery")
     fun searchDb(searchQuery: String): LiveData<List<TaskData>>
 }

@@ -50,7 +50,7 @@ class TaskViewModel (application: Application):AndroidViewModel(application) {
         }
     }
 
-    fun searchDb(searchQuery: String):LiveData<List<TaskData>>{
+    fun searchDb(searchQuery: String): LiveData<List<TaskData>>{
         return repository.searchDb(searchQuery)
     }
 }
