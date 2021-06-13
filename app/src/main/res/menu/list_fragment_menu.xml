@@ -8,6 +8,12 @@
         app:showAsAction="ifRoom"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
+    <item android:id="@+id/delete_button"
+        android:title="@string/deleteAll"
+        android:icon="@drawable/ic_delete"
+        android:iconTint="@color/white"
+        app:showAsAction="ifRoom"/>
+
     <group android:checkableBehavior="single">
         <item android:id="@+id/sort_opt"
             android:title="@string/sortBy">
@@ -23,9 +29,7 @@
             </menu>
         </item>
     </group>
-
-    <item android:id="@+id/delete_button"
-        android:title="@string/deleteAll"/>
-
-
+    <item android:id="@+id/about_button"
+        android:title="@string/about">
+    </item>
 </menu>

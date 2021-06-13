@@ -1,6 +1,7 @@
 package com.example.taskid.fragments.list
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -12,6 +13,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.taskid.AboutActivity
 import com.example.taskid.R
 import com.example.taskid.data.viewmodel.TaskViewModel
 import com.example.taskid.databinding.FragmentListBinding
@@ -84,6 +86,10 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             R.id.desc_asc -> addTaskViewModel.sortByDescAsc.observe(viewLifecycleOwner,{adapter.setData(it)})
         }
 
+        if(item.itemId == R.id.about_button){
+            val intent = Intent(this.context, AboutActivity::class.java)
+            startActivity(intent)
+        }
         return super.onOptionsItemSelected(item)
     }
 
