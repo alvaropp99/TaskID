@@ -80,6 +80,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         when (item.itemId){
             R.id.priority_high -> addTaskViewModel.sortByHigh.observe(viewLifecycleOwner,{adapter.setData(it)})
             R.id.priority_low -> addTaskViewModel.sortByLow.observe(viewLifecycleOwner,{adapter.setData(it)})
+            R.id.title_asc -> addTaskViewModel.sortByTitleAsc.observe(viewLifecycleOwner,{adapter.setData(it)})
+            R.id.desc_asc -> addTaskViewModel.sortByDescAsc.observe(viewLifecycleOwner,{adapter.setData(it)})
         }
 
         return super.onOptionsItemSelected(item)

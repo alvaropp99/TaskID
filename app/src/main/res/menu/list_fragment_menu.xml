@@ -13,9 +13,13 @@
             android:title="@string/sortBy">
             <menu>
                 <item android:id="@+id/priority_high"
-                    android:title="Urgente"/>
+                    android:title="Mayor Urgencia"/>
                 <item android:id="@+id/priority_low"
-                    android:title="Poco Urgente"/>
+                    android:title="Menor Urgencia"/>
+                <item android:id="@+id/title_asc"
+                    android:title="Título"/>
+                <item android:id="@+id/desc_asc"
+                    android:title="Descripción "/>
             </menu>
         </item>
     </group>

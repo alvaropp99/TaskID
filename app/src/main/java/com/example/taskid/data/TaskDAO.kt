@@ -32,4 +32,10 @@ interface TaskDAO {
 
     @Query("SELECT * FROM task_table WHERE title LIKE :searchQuery OR description LIKE :searchQuery")
     fun searchDb(searchQuery: String): LiveData<List<TaskData>>
+
+    @Query("SELECT * FROM task_table ORDER BY title ASC")
+    fun sortByTitleAsc(): LiveData<List<TaskData>>
+
+    @Query("SELECT * FROM task_table ORDER BY description ASC")
+    fun sortByDescAsc(): LiveData<List<TaskData>>
 }

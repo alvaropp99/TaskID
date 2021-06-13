@@ -19,6 +19,8 @@ class TaskViewModel (application: Application):AndroidViewModel(application) {
     val getData:LiveData<List<TaskData>> = repository.getData
     val sortByHigh: LiveData<List<TaskData>> = repository.sortByHigh
     val sortByLow: LiveData<List<TaskData>> = repository.sortByLow
+    val sortByTitleAsc: LiveData<List<TaskData>> = repository.sortByTitleAsc
+    val sortByDescAsc: LiveData<List<TaskData>> = repository.sortByDescAsc
 
     val emptyDb: MutableLiveData<Boolean> = MutableLiveData(true)
 
