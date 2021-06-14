@@ -38,4 +38,10 @@ interface TaskDAO {
 
     @Query("SELECT * FROM task_table ORDER BY description ASC")
     fun sortByDescAsc(): LiveData<List<TaskData>>
+
+    @Query("SELECT * FROM task_table ORDER BY id DESC")
+    fun sortByDateAsc(): LiveData<List<TaskData>>
+
+    @Query("SELECT * FROM task_table ORDER BY id ASC")
+    fun sortByDateDesc(): LiveData<List<TaskData>>
 }

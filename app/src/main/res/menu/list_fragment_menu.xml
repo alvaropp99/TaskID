@@ -26,6 +26,10 @@
                     android:title="Título"/>
                 <item android:id="@+id/desc_asc"
                     android:title="Descripción "/>
+                <item android:id="@+id/date_asc"
+                    android:title="Más Reciente "/>
+                <item android:id="@+id/date_desc"
+                    android:title="Menos Reciente "/>
             </menu>
         </item>
     </group>

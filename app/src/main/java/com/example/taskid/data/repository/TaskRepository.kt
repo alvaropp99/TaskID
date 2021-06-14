@@ -10,6 +10,8 @@ class TaskRepository (private val taskDAO: TaskDAO) {
     val sortByLow: LiveData<List<TaskData>> = taskDAO.sortByLow()
     val sortByTitleAsc: LiveData<List<TaskData>> = taskDAO.sortByTitleAsc()
     val sortByDescAsc: LiveData<List<TaskData>> = taskDAO.sortByDescAsc()
+    val sortByDateAsc: LiveData<List<TaskData>> = taskDAO.sortByDateAsc()
+    val sortByDateDesc: LiveData<List<TaskData>> = taskDAO.sortByDateDesc()
 
     suspend fun insertData(taskData: TaskData){
         taskDAO.insertData(taskData)

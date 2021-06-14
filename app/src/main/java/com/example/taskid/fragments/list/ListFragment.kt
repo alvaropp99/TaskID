@@ -84,6 +84,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             R.id.priority_low -> addTaskViewModel.sortByLow.observe(viewLifecycleOwner,{adapter.setData(it)})
             R.id.title_asc -> addTaskViewModel.sortByTitleAsc.observe(viewLifecycleOwner,{adapter.setData(it)})
             R.id.desc_asc -> addTaskViewModel.sortByDescAsc.observe(viewLifecycleOwner,{adapter.setData(it)})
+            R.id.date_asc -> addTaskViewModel.sortByDateAsc.observe(viewLifecycleOwner,{adapter.setData(it)})
+            R.id.date_desc -> addTaskViewModel.sortByDateDesc.observe(viewLifecycleOwner,{adapter.setData(it)})
         }
 
         if(item.itemId == R.id.about_button){
